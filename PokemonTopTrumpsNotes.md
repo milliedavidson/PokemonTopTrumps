@@ -1,8 +1,6 @@
-# Pokemon Top Trumps Notes
+Pokemon Top Trumps Notes
 
-We chose to do top trumps.
-
-Originally used a cat API, which looked like lots of fun, but we were having issues:
+We originally used a cat API but were having issues:
 
 - Error message: "TypeError: list indices must be integers or slices, not str"
 - Because this wasn't working, several other related lines threw up errors too
@@ -16,18 +14,56 @@ Originally used a cat API, which looked like lots of fun, but we were having iss
         "life expectancy": cat["life_expectancy"]
     }
 
-- We took it turns to try fixing the problem 
-- Confirmed the list definitely needed to be numbers instead of strings
-- But there were no numbers to reference in the cat API
-- We couldn't figure out how to get it to pull the cat stats!
+But there were no numbers to reference in the cat API so we couldn't figure out how to get it to pull the stats!
 
-Due to a short time frame to complete the game, we replace the cats API with the Pokemon API. It worked!!!
-
-Then we added new game play:
-
-- A running score of player vs computer (e.g. 1-0)
-- Print the computer's card stats when it prints the winner, so we can see the card they got and why they won
+We decided to replace the cats API with the Pokemon API for sake of time. It worked.
 
 
 
+A few of the features:
+
+- Score of player vs computer is tracked at beginning of game and updated at the end
+
+player_score = 0
+computer_score = 0
+
+ result = compare_stats(player_pokemon['stats'][player_stat], computer_pokemon['stats'][player_stat])
+    if result == "player":
+        player_score +=1
+        print("\n*** You won! ***")
+    elif result == "computer":
+        computer_score +=1
+        print("\n*** You lost! ***")
+    else:
+        print("\n*** It's a draw. ***")
+
+- A random computer pokemon ID number is generated and fetched from the API
+
+computer_pokemon_id = random.randint(1, 151)
+
+  computer_pokemon = fetch_pokemon_data(computer_pokemon_id)
+    if not computer_pokemon:
+        print("Failed to fetch Pokemon data, please try again.")
+        continue
+
+- The computer's card stats are shown after it prints the winner
+
+ print("\nThe computer randomly got {}, which has the following stats: ".format(computer_pokemon['name'].capitalize()))
+    for stat, value in computer_pokemon['stats'].items():
+        print("{}: {}".format(stat.capitalize(), value))
+
+
+We improved readability:
+
+- \n for a new line
+- Stars ******
+
+ print("\n**********************")
+    print("Current score: ")
+    print("Player Score: {} VS Computer Score: {}".format(player_score, computer_score))
+    print("**********************")
+
+- Capitalised names
+
+print("\nThe computer randomly got {}, which has the following stats: ".format(computer_pokemon['name'].capitalize()))
 

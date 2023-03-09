@@ -1,9 +1,9 @@
 # Pokemon Top Trumps
 # API site - https://pokeapi.co/api/v2/pokemon/
+# API key - ????
 
 import requests
 import random
-
 
 # Function to fetch Pokemon data from the API
 def fetch_pokemon_data(pokemon_id):
@@ -20,7 +20,6 @@ def fetch_pokemon_data(pokemon_id):
     else:
         return None
 
-
 # Function to compare the chosen stats and return the winner
 def compare_stats(player_stat, computer_stat):
     if player_stat > computer_stat:
@@ -33,7 +32,6 @@ def compare_stats(player_stat, computer_stat):
 # Begin score taking
 player_score = 0
 computer_score = 0
-
 
 # Main game loop
 while True:
@@ -56,7 +54,7 @@ while True:
         continue
 
     # Print the player's card stats
-    print("You have {}, which has the following stats: ".format(player_pokemon['name'].capitalize()))
+    print("You have {}, which has the following stats: ".format(player_pokemon['name']))
     for stat, value in player_pokemon['stats'].items():
         print("{}: {}".format(stat.capitalize(), value))
 
@@ -70,15 +68,15 @@ while True:
     result = compare_stats(player_pokemon['stats'][player_stat], computer_pokemon['stats'][player_stat])
     if result == "player":
         player_score +=1
-        print("\n*** You won! ***")
+        print("\nYou won!")
     elif result == "computer":
         computer_score +=1
-        print("\n*** You lost! ***")
+        print("\nYou lost!")
     else:
-        print("\n*** It's a draw. ***")
+        print("\nIt's a draw.")
 
     # Print the computer's card
-    print("\nThe computer randomly got {}, which has the following stats: ".format(computer_pokemon['name'].capitalize()))
+    print("\nThe computer randomly got {}, which has the following stats: ".format(computer_pokemon['name']))
     for stat, value in computer_pokemon['stats'].items():
         print("{}: {}".format(stat.capitalize(), value))
 
