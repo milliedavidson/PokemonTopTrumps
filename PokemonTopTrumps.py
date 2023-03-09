@@ -1,11 +1,15 @@
+# Pokemon Top Trumps
+# API site - https://pokeapi.co/api/v2/pokemon/
+# API key - ????
+
 import requests
 import random
 
 
 # Function to fetch Pokemon data from the API
 def fetch_pokemon_data(pokemon_id):
-    url = f"https://pokeapi.co/api/v2/pokemon/{pokemon_id}/"
-    response = requests.get(url)
+    api_url = 'https://pokeapi.co/api/v2/pokemon/{}'.format(pokemon_id)
+    response = requests.get(api_url)
     if response.status_code == 200:
         data = response.json()
         stats = {}
@@ -26,7 +30,10 @@ def compare_stats(player_stat, computer_stat):
         return "computer"
     else:
         return "draw"
-
+    
+# Begin score taking
+player_score = 0
+computer_score = 0
 
 # Main game loop
 while True:
@@ -62,11 +69,24 @@ while True:
 
     result = compare_stats(player_pokemon['stats'][player_stat], computer_pokemon['stats'][player_stat])
     if result == "player":
+        player_score +=1
         print("You won!")
     elif result == "computer":
+        computer_score +=1
         print("You lost!")
     else:
         print("It's a draw.")
+
+    # Print the computer's card
+    print("The computer randomly got {}, which has the following stats: ".format(computer_pokemon['name']))
+    for stat, value in computer_pokemon['stats'].items():
+        print("{}: {}".format(stat.capitalize(), value))
+
+    # Current score update
+    print("**********************")
+    print("Current score: ")
+    print("Player Score: {} vs Computer Score: {}".format(player_score, computer_score))
+    print("**********************")
 
     # Play again loop
     play_again = input("Do you want to play again? (y/n): ")
