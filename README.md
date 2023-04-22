@@ -1,4 +1,4 @@
-# PokemonTopTrumps
+# Pokemon Top Trumps
 
 A small project with [Mia Cliffe](https://replit.com/@MiaCliffe?tab=repls)
 
