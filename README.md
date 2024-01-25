@@ -1,8 +1,8 @@
 # Pokemon Top Trumps
 
-A Pokemon top trumps game, created with [Mia Cliffe](https://replit.com/@MiaCliffe?tab=repls). 
+A Pokemon top trumps game, created with [Mia Cliffe](https://replit.com/@MiaCliffe?tab=repls) as part of a project with [Code First Girls](https://codefirstgirls.com/).
 
-Run it in a terminal to play.
+Run it in a terminal to play!
 
 <br>
 
